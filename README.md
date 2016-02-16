@@ -58,7 +58,7 @@ The supervisor.conf (example below) is provided to configure supervisord which i
 [supervisord]
 nodaemon=true
 
-[program:unify]
+[program:unifi]
 command=nice ionice -c2 /usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java -Xmx256M -jar /usr/lib/unifi/lib/ace.jar start
 pidfile=/var/run/unifi/unifi.pid
 stdout_logfile=/var/log/supervisor/%(program_name)s.log

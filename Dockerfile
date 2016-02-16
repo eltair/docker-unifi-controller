@@ -5,6 +5,7 @@
 FROM ubuntu:latest
 MAINTAINER stuart nixon dotcomstu@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
+ENV APT apt-get -qqy
 
 RUN \
  	mkdir -p /var/log/supervisor /usr/lib/unifi/data && \
@@ -30,12 +31,12 @@ deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen\n\
 
 # add ubiquity + 10gen(mongo) repo + key
 # update then install
-RUN \
-	apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
-	apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10 && \
-   	apt-get update -q -y && \
-    apt-get install -q -y supervisor apt-utils lsb-release curl wget rsync util-linux && \
-   	apt-get install -q -y unifi
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+RUN $APT update
+RUN $APT upgrade
+RUN $APT install supervisor apt-utils lsb-release curl wget rsync util-linux
+RUN $APT install unifi
 
 ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
