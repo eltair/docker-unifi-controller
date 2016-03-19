@@ -33,12 +33,12 @@ deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen\n\
 # update then install
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
-RUN $APT update
-RUN $APT upgrade
-RUN $APT install supervisor apt-utils lsb-release curl wget rsync util-linux
-RUN $APT install unifi
+RUN $APT update && $APT upgrade && $APT install supervisor apt-utils lsb-release curl wget rsync util-linux && $APT install unifi
 
 ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+#RUN groupadd -r unifi && useradd -r -g unifi unifi
+#USER unifi
 
 VOLUME /usr/lib/unifi/data
 EXPOSE  8443 8880 8080 27117
