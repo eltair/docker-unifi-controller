@@ -1,5 +1,5 @@
-USER = rednut
-NAME = unifi-controller
+USER = eltair
+NAME = unifi
 REPO = $(USER)/$(NAME)
 
 LVOL = /srv/data/apps/docker/unifi/data
@@ -13,7 +13,7 @@ all: build tag_latest
 
 
 build:
-	docker build -t="$(REPO):$(VERSION)" --rm --no-cache .
+	docker build -t $(REPO):$(VERSION) --rm --no-cache .
 
 
 
