@@ -1,0 +1,14 @@
+version: '2'
+services:
+  unifi:
+    image: jacobalberty/unifi
+    volumes: 
+      - /zfs/unifi/data:/var/lib/unifi
+      - /zfs/unifi/log:/var/log/unifi
+    ports:
+      - "2222:22"
+      - "8880:8880"
+      - "8080:8080"
+      - "80:8080"
+      - "8443:8443"
+      - "27117:27117"
