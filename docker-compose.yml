@@ -1,12 +1,12 @@
 version: '2'
 services:
   unifi:
-    image: jacobalberty/unifi
+    image: jacobalberty/unifi:unifi5
+    restart: always
     volumes: 
       - /zfs/unifi/data:/var/lib/unifi
       - /zfs/unifi/log:/var/log/unifi
     ports:
-      - "80:8080/tcp"
       - "8080:8080/tcp"
       - "8081:8081/tcp"
       - "8443:8443/tcp"
